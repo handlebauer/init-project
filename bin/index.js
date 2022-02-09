@@ -14,10 +14,16 @@ import { defaultTest } from '@hbauer/init-project/src/default-test.js'
 
 import { buildPackageJson } from '@hbauer/init-project/src/build-package-json.js'
 
+console.log(`
+========================
+  Create a new package 
+========================
+`)
+
 const cwd = process.cwd()
 const pathTo = to => path.join(cwd, to)
 
-const name = await question('Package name: ')
+const name = await question(' => Package name: ')
 const respositoryName = name.startsWith(NPM_SCOPE)
   ? name.slice(NPM_SCOPE.length + 1)
   : name
