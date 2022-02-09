@@ -7,7 +7,7 @@ import {
   NPM_SCOPE,
 } from '@hbauer/init-project/src/constants.js'
 
-import { defaultModules } from '.@hbauer/init-project/src/default-modules.js'
+import { defaultModules } from '@hbauer/init-project/src/default-modules.js'
 import { defaultGitignore } from '@hbauer/init-project/src/default-gitignore.js'
 import { defaultRollupConfig } from '@hbauer/init-project/src/default-rollup-config.js'
 import { defaultTest } from '@hbauer/init-project/src/default-test.js'
