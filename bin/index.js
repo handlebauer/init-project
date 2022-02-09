@@ -17,24 +17,22 @@ console.log(`
 ================================
 `)
 
-// Construct dynamic package.json fields
+// Ask a couple of questions
 const packageName = await question(' => Package name: ')
 const user =
   (await question(' => User/Organization name: ')) ||
   process.env.GITHUB_USER ||
   ''
 
+// Parse answers
 const parts = packageName.split('/')
 const scope = parts.length === 2 && parts[0]
-
 const respositoryName = scope ? parts[1] : packageName
-
 const repository = `https://github.com/${user}/${respositoryName}.git`
 
-// Build package.json
 const packageJson = buildPackageJson({ name: packageName, repository })
 
-// Create new directory
+// Create new project directory
 await $`mkdir ${respositoryName}`
 await cd(respositoryName)
 
