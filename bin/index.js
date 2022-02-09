@@ -34,8 +34,8 @@ const repository = `https://github.com/${GITHUB_USER_NAME}/${respositoryName}.gi
 const packageJson = buildPackageJson({ name: packageName, repository })
 
 // Create new directory
-await $`mkdir ${packageName}`
-await cd(packageName)
+await $`mkdir ${respositoryName}`
+await cd(respositoryName)
 
 // Create empty index.js
 await $`mkdir src`
