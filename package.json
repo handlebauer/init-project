@@ -6,6 +6,10 @@
   "repository": "https://github.com/handlebauer/init-project.git",
   "author": "Donald Geddes",
   "license": "MIT",
+  "prettier": "@hbauer/prettier-config",
+  "eslintConfig": {
+    "extends": "@hbauer/eslint-config"
+  },
   "devDependencies": {
     "@hbauer/eslint-config": "^1.2.1",
     "@hbauer/prettier-config": "^1.1.0",
