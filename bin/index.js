@@ -2,14 +2,17 @@
 
 import { $, question, fs, path } from 'zx'
 
-import { GITHUB_USER_NAME, NPM_SCOPE } from '../src/constants.js'
+import {
+  GITHUB_USER_NAME,
+  NPM_SCOPE,
+} from '@hbauer/init-project/src/constants.js'
 
-import { defaultModules } from '../src/default-modules.js'
-import { defaultGitignore } from '../src/default-gitignore.js'
-import { defaultRollupConfig } from '../src/default-rollup-config.js'
-import { defaultTest } from '../src/default-test.js'
+import { defaultModules } from '.@hbauer/init-project/src/default-modules.js'
+import { defaultGitignore } from '@hbauer/init-project/src/default-gitignore.js'
+import { defaultRollupConfig } from '@hbauer/init-project/src/default-rollup-config.js'
+import { defaultTest } from '@hbauer/init-project/src/default-test.js'
 
-import { buildPackageJson } from '../src/build-package-json.js'
+import { buildPackageJson } from '@hbauer/init-project/src/build-package-json.js'
 
 const cwd = process.cwd()
 const pathTo = to => path.join(cwd, to)
