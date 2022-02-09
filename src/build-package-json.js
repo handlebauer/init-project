@@ -9,7 +9,7 @@ export const buildPackageJson = ({ name, repository }) => ({
   module: './lib/index.mjs',
   main: './lib/index.cjs',
   author: 'Donald Geddes',
-  licences: 'MIT',
+  licence: 'MIT',
   repository,
   publishConfig: {
     access: 'public',
