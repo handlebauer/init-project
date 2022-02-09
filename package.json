@@ -1,0 +1,9 @@
+{
+  "name": "@hbauer/init-project",
+  "version": "0.0.0",
+  "description": "Ease into it",
+  "main": "index.js",
+  "repository": "https://github.com/handlebauer/init-project.git",
+  "author": "Donald Geddes",
+  "license": "MIT"
+}
