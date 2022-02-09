@@ -1,6 +1,6 @@
 #!/usr/bin/env zx
 
-import { $, question, cd, fs } from 'zx'
+import { $, question, fs } from 'zx'
 
 import { GITHUB_USER_NAME, NPM_SCOPE } from './constants.js'
 
@@ -17,11 +17,6 @@ const respositoryName = name.startsWith(NPM_SCOPE)
   : name
 const repository = `https://github.com/${GITHUB_USER_NAME}/${respositoryName}.git`
 const packageJson = buildPackageJson({ name, repository })
-
-await $`rm -rf test`
-await $`mkdir test`
-
-await cd('test')
 
 await $`mkdir src`
 await $`touch src/index.js`
