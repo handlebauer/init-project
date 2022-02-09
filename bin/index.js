@@ -15,7 +15,6 @@ import { defaultTest } from '@hbauer/init-project/src/default-test.js'
 import { buildPackageJson } from '@hbauer/init-project/src/build-package-json.js'
 
 const cwd = process.cwd()
-const pathTo = to => path.join(cwd, to)
 
 console.log(`
 ========================
@@ -45,6 +44,8 @@ await $`touch src/index.js`
 await $`git init`
 
 // Write default files
+const pathTo = to => path.join(cwd, respositoryName, to)
+
 fs.writeFileSync(pathTo('package.json'), JSON.stringify(packageJson, null, 2))
 fs.writeFileSync(pathTo('.gitignore'), defaultGitignore)
 fs.writeFileSync(pathTo('rollup.config.js'), defaultRollupConfig)
