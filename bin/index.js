@@ -2,11 +2,6 @@
 
 import { $, question, fs, path, cd } from 'zx'
 
-import {
-  GITHUB_USER_NAME,
-  NPM_SCOPE,
-} from '@hbauer/init-project/src/constants.js'
-
 import { defaultModules } from '@hbauer/init-project/src/default-modules.js'
 import { defaultGitignore } from '@hbauer/init-project/src/default-gitignore.js'
 import { defaultRollupConfig } from '@hbauer/init-project/src/default-rollup-config.js'
@@ -19,17 +14,22 @@ const cwd = process.cwd()
 console.log(`
 ================================
       Create a new package      
-  Create a new package 
-      Create a new package      
 ================================
 `)
 
 // Construct dynamic package.json fields
 const packageName = await question(' => Package name: ')
-const respositoryName = packageName.startsWith(NPM_SCOPE)
-  ? packageName.slice(NPM_SCOPE.length + 1)
-  : packageName
-const repository = `https://github.com/${GITHUB_USER_NAME}/${respositoryName}.git`
+const user =
+  (await question(' => User/Organization name: ')) ||
+  process.env.GITHUB_USER ||
+  ''
+
+const parts = packageName.split('/')
+const scope = parts.length === 2 && parts[0]
+
+const respositoryName = scope ? parts[1] : packageName
+
+const repository = `https://github.com/${user}/${respositoryName}.git`
 
 // Build package.json
 const packageJson = buildPackageJson({ name: packageName, repository })
