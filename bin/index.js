@@ -17,9 +17,11 @@ import { buildPackageJson } from '@hbauer/init-project/src/build-package-json.js
 const cwd = process.cwd()
 
 console.log(`
-========================
+================================
+      Create a new package      
   Create a new package 
-========================
+      Create a new package      
+================================
 `)
 
 // Construct dynamic package.json fields
