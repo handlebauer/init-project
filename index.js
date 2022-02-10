@@ -2,6 +2,8 @@
 
 const { $, fs, path, cd } = require('zx')
 
+require('./src/process-error.js')
+
 const Enquirer = require('enquirer')
 
 const { defaultModules } = require('./src/default-modules.js')
