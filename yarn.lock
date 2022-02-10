@@ -17,6 +17,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@hbauer/convenience-functions@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@hbauer/convenience-functions/-/convenience-functions-0.10.0.tgz#34d29666d6a6443fca4f82d7ddfac2c364d6ca9a"
+  integrity sha512-M7Jgpu0mUDP7WaVW576VId0qwZzabLK29QVPKrTAIKmDZPwRFa4vTV9YKGOeW81IXpIeAHLQD6J8au2GTfahqw==
+
 "@hbauer/eslint-config@^1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@hbauer/eslint-config/-/eslint-config-1.2.1.tgz#f2e1455c975639f7e7c565e2e41665a1f538dc7e"

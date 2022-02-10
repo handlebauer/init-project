@@ -2,6 +2,7 @@
   "name": "@hbauer/init-project",
   "version": "0.5.2",
   "description": "Ease into it",
+  "type": "module",
   "bin": "./index.js",
   "repository": "https://github.com/handlebauer/init-project.git",
   "author": "Donald Geddes",
@@ -17,6 +18,7 @@
     "prettier": "^2.5.1"
   },
   "dependencies": {
+    "@hbauer/convenience-functions": "^0.10.0",
     "enquirer": "^2.3.6",
     "zx": "^4.3.0"
   }

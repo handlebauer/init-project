@@ -1,4 +1,4 @@
-exports.defaultModules = [
+export const defaultModules = [
   'shx',
   'rollup',
   'ava',
