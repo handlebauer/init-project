@@ -1,10 +1,10 @@
 #!/usr/bin/env zx
 
 import { $, fs, path, cd } from 'zx'
+import Enquirer from 'enquirer'
+import { _dirname } from '@hbauer/convenience-functions'
 
 import './src/process-error.js'
-
-import Enquirer from 'enquirer'
 
 import { defaultModules } from './src/default-modules.js'
 import { defaultGitignore } from './src/default-gitignore.js'
@@ -13,8 +13,8 @@ import { defaultTest } from './src/default-test.js'
 
 import { buildPackageJson } from './src/build-package-json.js'
 
+const cwd = _dirname(import.meta.url)
 const enquirer = new Enquirer()
-const cwd = process.cwd()
 
 // Ask a couple of questions
 const { packageName } = await enquirer.prompt({
