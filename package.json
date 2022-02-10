@@ -2,7 +2,6 @@
   "name": "@hbauer/init-project",
   "version": "0.4.5",
   "description": "Ease into it",
-  "type": "module",
   "bin": "./index.js",
   "repository": "https://github.com/handlebauer/init-project.git",
   "author": "Donald Geddes",

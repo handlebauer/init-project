@@ -1,4 +1,4 @@
-export const defaultGitignore = `node_modules
+exports.defaultGitignore = `node_modules
 lib
 
 yarn-debug.log*

@@ -1,4 +1,4 @@
-export const defaultRollupConfig = `import pkg from './package.json'
+exports.defaultRollupConfig = `import pkg from './package.json'
 
 const input = './src/index.js'
 

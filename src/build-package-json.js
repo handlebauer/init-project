@@ -1,4 +1,4 @@
-export const buildPackageJson = ({ name, repository }) => ({
+exports.buildPackageJson = ({ name, repository }) => ({
   name,
   version: '0.0.0',
   type: 'module',
