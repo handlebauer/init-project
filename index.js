@@ -49,6 +49,7 @@ await $`touch src/index.js`
 
 // Initialize git
 await $`git init`
+await $`git push --set-upstream origin main`
 
 // Write default files
 const pathTo = to => path.join(cwd, respositoryName, to)
