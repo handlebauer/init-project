@@ -4,14 +4,14 @@ import { $, fs, path, cd } from 'zx'
 import Enquirer from 'enquirer'
 import { _dirname } from '@hbauer/convenience-functions'
 
-import './src/process-error.js'
+import '@hbauer/init-project/src/process-error.js'
 
-import { defaultModules } from './src/default-modules.js'
-import { defaultGitignore } from './src/default-gitignore.js'
-import { defaultRollupConfig } from './src/default-rollup-config.js'
-import { defaultTest } from './src/default-test.js'
+import { defaultModules } from '@hbauer/init-project/src/default-modules.js'
+import { defaultGitignore } from '@hbauer/init-project/src/default-gitignore.js'
+import { defaultRollupConfig } from '@hbauer/init-project/src/default-rollup-config.js'
+import { defaultTest } from '@hbauer/init-project/src/default-test.js'
 
-import { buildPackageJson } from './src/build-package-json.js'
+import { buildPackageJson } from '@hbauer/init-project/src/build-package-json.js'
 
 const cwd = _dirname(import.meta.url)
 const enquirer = new Enquirer()
