@@ -3,11 +3,7 @@
   "version": "0.7.3",
   "description": "Ease into it",
   "type": "module",
-  "bin": "./index.mjs",
-  "files": [
-    "index.mjs",
-    "src"
-  ],
+  "bin": "./index.jjs",
   "repository": "https://github.com/handlebauer/init-project.git",
   "author": "Donald Geddes",
   "license": "MIT",
