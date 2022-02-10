@@ -13,11 +13,10 @@ const { defaultTest } = require('./src/default-test.js')
 
 const { buildPackageJson } = require('./src/build-package-json.js')
 
+const enquirer = new Enquirer()
+const cwd = process.cwd()
+
 async function main() {
-  const enquirer = new Enquirer()
-
-  const cwd = process.cwd()
-
   // Ask a couple of questions
   const { packageName } = await enquirer.prompt({
     type: 'input',
