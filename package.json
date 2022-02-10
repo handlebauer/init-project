@@ -1,10 +1,13 @@
 {
   "name": "@hbauer/init-project",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Ease into it",
   "type": "module",
   "bin": "./index.js",
-  "files": ["index.js", "src"],
+  "files": [
+    "index.js",
+    "src"
+  ],
   "repository": "https://github.com/handlebauer/init-project.git",
   "author": "Donald Geddes",
   "license": "MIT",
