@@ -3,7 +3,7 @@
   "version": "0.4.2",
   "description": "Ease into it",
   "type": "module",
-  "bin": "./bin/index.js",
+  "bin": "./index.js",
   "repository": "https://github.com/handlebauer/init-project.git",
   "author": "Donald Geddes",
   "license": "MIT",
