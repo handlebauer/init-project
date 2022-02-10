@@ -1,28 +1,35 @@
 #!/usr/bin/env zx
 
-import { $, question, fs, path, cd } from 'zx'
+import { $, fs, path, cd } from 'zx'
 
-import { defaultModules } from '@hbauer/init-project/src/default-modules.js'
-import { defaultGitignore } from '@hbauer/init-project/src/default-gitignore.js'
-import { defaultRollupConfig } from '@hbauer/init-project/src/default-rollup-config.js'
-import { defaultTest } from '@hbauer/init-project/src/default-test.js'
+import Enquirer from 'enquirer'
 
-import { buildPackageJson } from '@hbauer/init-project/src/build-package-json.js'
+import { defaultModules } from './src/default-modules.js'
+import { defaultGitignore } from './src/default-gitignore.js'
+import { defaultRollupConfig } from './src/default-rollup-config.js'
+import { defaultTest } from './src/default-test.js'
+
+import { buildPackageJson } from './src/build-package-json.js'
+
+const enquirer = new Enquirer()
 
 const cwd = process.cwd()
 
-console.log(`
-================================
-      Create a new package      
-================================
-`)
-
 // Ask a couple of questions
-const packageName = await question(' => Package name: ')
-const user =
-  (await question(' => User/Organization name: ')) ||
-  process.env.GITHUB_USER ||
-  ''
+const { packageName } = await enquirer.prompt({
+  type: 'input',
+  name: 'packageName',
+  message: 'Package name:',
+  initial: '@hbauer/',
+  required: true,
+})
+const { user } = await enquirer.prompt({
+  type: 'input',
+  name: 'user',
+  message: 'GitHub user:',
+  initial: 'handlebauer',
+  required: true,
+})
 
 // Parse answers
 const parts = packageName.split('/')
