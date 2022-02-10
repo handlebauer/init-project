@@ -1,6 +1,6 @@
 {
   "name": "@hbauer/init-project",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Ease into it",
   "type": "module",
   "bin": "./index.js",
