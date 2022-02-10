@@ -1,5 +1,5 @@
-process.once('uncaughtException', () => {
-  console.log(`
-      Aborting..
-  `)
-})
+// process.once('uncaughtException', () => {
+//   console.log(`
+//       Aborting..
+//   `)
+// })
