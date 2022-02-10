@@ -1,4 +1,4 @@
-process.once('unhandledRejection', () => {
+process.once('uncaughtException', () => {
   console.log(`
       Aborting..
   `)
