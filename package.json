@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "@hbauer/convenience-functions": "^0.10.0",
-    "@hbauer/init-project": "^0.7.3",
     "enquirer": "^2.3.6",
     "zx": "^4.3.0"
   }
