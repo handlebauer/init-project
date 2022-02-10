@@ -5,7 +5,7 @@
   "type": "module",
   "bin": "./index.js",
   "files": [
-    "index.js",
+    "index.mjs",
     "src"
   ],
   "repository": "https://github.com/handlebauer/init-project.git",
