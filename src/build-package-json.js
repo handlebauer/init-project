@@ -1,4 +1,4 @@
-export const buildPackageJson = ({ name, repository }) => ({
+export const buildPackageJson = ({ name, user, repo }) => ({
   name,
   version: '0.0.0',
   type: 'module',
@@ -10,7 +10,7 @@ export const buildPackageJson = ({ name, repository }) => ({
   main: './lib/index.cjs',
   author: 'Donald Geddes',
   licence: 'MIT',
-  repository,
+  repository: `https://github.com/${user}/${repo}.git`,
   publishConfig: {
     access: 'public',
   },

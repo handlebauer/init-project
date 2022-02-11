@@ -10,38 +10,23 @@ import { defaultGitignore } from '@hbauer/init-project/src/default-gitignore.js'
 import { defaultRollupConfig } from '@hbauer/init-project/src/default-rollup-config.js'
 import { defaultTest } from '@hbauer/init-project/src/default-test.js'
 
+import { packageJsonSnippet } from '@hbauer/init-project/src/package-json-snippet.js'
 import { buildPackageJson } from '@hbauer/init-project/src/build-package-json.js'
 import { getPwd } from '@hbauer/init-project/src/utils/get-pwd.js'
 
-const enquirer = new Enquirer()
+const { Snippet } = Enquirer
 
-// Ask a couple of questions
-const { packageName } = await enquirer.prompt({
-  type: 'input',
-  name: 'packageName',
-  message: 'Package name:',
-  initial: '@hbauer/',
-  required: true,
-})
-const { user } = await enquirer.prompt({
-  type: 'input',
-  name: 'user',
-  message: 'GitHub user:',
-  initial: 'handlebauer',
-  required: true,
-})
+const { values: fields } = await new Snippet(packageJsonSnippet).run()
+
+const parts = fields.name.split('/')
+const repo = parts.length === 2 ? parts[1] : parts[0]
 
 // Parse answers
-const parts = packageName.split('/')
-const scope = parts.length === 2 && parts[0]
-const respositoryName = scope ? parts[1] : packageName
-const repository = `https://github.com/${user}/${respositoryName}.git`
-
-const packageJson = buildPackageJson({ name: packageName, repository })
+const packageJson = buildPackageJson({ ...fields, repo })
 
 // Create new project directory
-await $`mkdir ${respositoryName}`
-await cd(respositoryName)
+await $`mkdir ${repo}`
+await cd(repo)
 
 // Create empty index.js
 await $`mkdir src`
