@@ -16,7 +16,7 @@ import { defaultJsConfig } from '@hbauer/init-project/src/default-js-config.js'
 import { defaultTest } from '@hbauer/init-project/src/default-test.js'
 
 import { packageJsonSnippet } from '@hbauer/init-project/src/package-json-snippet.js'
-import { lernaConfirm } from './src/lerna-confirm.js'
+import { lernaConfirm } from '@hbauer/init-project/src/lerna-confirm.js'
 
 import { buildPackageJson } from '@hbauer/init-project/src/build-package-json.js'
 import { getPwd } from '@hbauer/init-project/src/utils/get-pwd.js'
