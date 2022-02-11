@@ -63,3 +63,5 @@ if (lerna === false) {
 }
 
 copy.writeSync(`cd ${repo}`)
+
+$`code .`
