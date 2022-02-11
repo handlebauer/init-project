@@ -2,7 +2,6 @@
 
 import { $, fs, path, cd } from 'zx'
 import Enquirer from 'enquirer'
-import { _dirname } from '@hbauer/convenience-functions'
 
 import '@hbauer/init-project/src/process-error.js'
 
@@ -12,8 +11,8 @@ import { defaultRollupConfig } from '@hbauer/init-project/src/default-rollup-con
 import { defaultTest } from '@hbauer/init-project/src/default-test.js'
 
 import { buildPackageJson } from '@hbauer/init-project/src/build-package-json.js'
+import { getPwd } from '@hbauer/init-project/src/utils/get-pwd.js'
 
-const cwd = _dirname(import.meta.url)
 const enquirer = new Enquirer()
 
 // Ask a couple of questions
@@ -52,7 +51,8 @@ await $`touch src/index.js`
 await $`git init`
 
 // Write default files
-const pathTo = to => path.join(cwd, respositoryName, to)
+const pwd = await getPwd()
+const pathTo = to => path.join(pwd, respositoryName, to)
 
 fs.writeFileSync(pathTo('package.json'), JSON.stringify(packageJson, null, 2))
 fs.writeFileSync(pathTo('.gitignore'), defaultGitignore)
