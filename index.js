@@ -9,7 +9,7 @@ import copy from 'clipboardy'
 
 import '@hbauer/init-project/src/process-error.js'
 
-import { defaultModules } from '@hbauer/init-project/src/default-modules.js'
+import { defaultDevDependencies } from '@hbauer/init-project/src/default-dev-dependencies.js'
 import { defaultGitignore } from '@hbauer/init-project/src/default-gitignore.js'
 import { defaultRollupConfig } from '@hbauer/init-project/src/default-rollup-config.js'
 import { defaultJsConfig } from '@hbauer/init-project/src/default-js-config.js'
@@ -59,11 +59,11 @@ const lerna = await new Confirm(lernaConfirm).run()
 if (lerna === false) {
   // If not, some additional stuff
   await $`git init`
-  await $`yarn add -D ${defaultModules}`
+  await $`yarn add -D ${defaultDevDependencies}`
 
   // Add husky
   await $`npx husky-init && yarn`
-  await $`rm .husky/pre-commit`  
+  await $`rm .husky/pre-commit`
   fs.writeFileSync(pathTo('.husky/pre-commit'), defaultHuskyHook)
   await $`chmod +x .husky/pre-commit`
 }
