@@ -12,7 +12,7 @@ import '@hbauer/init-project/src/process-error.js'
 import { defaultModules } from '@hbauer/init-project/src/default-modules.js'
 import { defaultGitignore } from '@hbauer/init-project/src/default-gitignore.js'
 import { defaultRollupConfig } from '@hbauer/init-project/src/default-rollup-config.js'
-import { defaultJsConfig } from './src/default-js-config.js'
+import { defaultJsConfig } from '@hbauer/init-project/src/default-js-config.js'
 import { defaultTest } from '@hbauer/init-project/src/default-test.js'
 
 import { packageJsonSnippet } from '@hbauer/init-project/src/package-json-snippet.js'
