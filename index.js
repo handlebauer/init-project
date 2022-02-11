@@ -39,9 +39,6 @@ await cd(repo)
 await $`mkdir src`
 await $`touch src/index.js`
 
-// Initialize git
-await $`git init`
-
 // Write default files
 const pwd = await getPwd()
 const pathTo = to => path.join(pwd, to)
@@ -59,6 +56,7 @@ fs.writeFileSync(pathTo('src/test.js'), defaultTest)
 const lerna = await new Confirm(lernaConfirm).run()
 
 if (lerna === false) {
+  await $`git init`
   await $`yarn add -D ${defaultModules}`
 }
 
