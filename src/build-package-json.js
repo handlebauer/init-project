@@ -8,6 +8,8 @@ export const buildPackageJson = ({ name, user, repo }) => ({
   },
   module: './lib/index.mjs',
   main: './lib/index.cjs',
+  types: 'types/index.d.ts',
+  files: ['lib', 'types'],
   author: 'Donald Geddes',
   licence: 'MIT',
   repository: `https://github.com/${user}/${repo}.git`,
@@ -19,7 +21,7 @@ export const buildPackageJson = ({ name, user, repo }) => ({
     extends: '@hbauer/eslint-config',
   },
   scripts: {
-    build: 'shx rm -rf ./lib && rollup -c',
+    build: 'shx rm -rf ./lib && rollup -c && tsc -p jsconfig.json',
     test: 'ava',
     prepublishOnly: 'npm run build',
   },

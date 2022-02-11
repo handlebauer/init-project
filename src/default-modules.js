@@ -1,4 +1,5 @@
 export const defaultModules = [
+  'typescript',
   'shx',
   'rollup',
   'ava',
