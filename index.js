@@ -5,6 +5,7 @@ import { $, fs, path, cd } from 'zx'
 $.verbose = false
 
 import Enquirer from 'enquirer'
+import copy from 'clipboardy'
 
 import '@hbauer/init-project/src/process-error.js'
 
@@ -60,3 +61,5 @@ const lerna = await new Confirm(lernaConfirm).run()
 if (lerna === false) {
   $`yarn add -D ${defaultModules}`
 }
+
+copy.writeSync(`cd ${repo}`)
