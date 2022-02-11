@@ -53,10 +53,11 @@ fs.writeFileSync(
 )
 fs.writeFileSync(pathTo('src/test.js'), defaultTest)
 
-// Finish up
+// Monorepo?
 const lerna = await new Confirm(lernaConfirm).run()
 
 if (lerna === false) {
+  // If not, some additional stuff
   await $`git init`
   await $`yarn add -D ${defaultModules}`
 
