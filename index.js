@@ -14,6 +14,7 @@ import { defaultGitignore } from '@hbauer/init-project/src/default-gitignore.js'
 import { defaultRollupConfig } from '@hbauer/init-project/src/default-rollup-config.js'
 import { defaultJsConfig } from '@hbauer/init-project/src/default-js-config.js'
 import { defaultTest } from '@hbauer/init-project/src/default-test.js'
+import { defaultHuskyHook } from '@hbauer/init-project/src/default-husky-hook.js'
 
 import { packageJsonSnippet } from '@hbauer/init-project/src/package-json-snippet.js'
 import { lernaConfirm } from '@hbauer/init-project/src/lerna-confirm.js'
@@ -58,6 +59,12 @@ const lerna = await new Confirm(lernaConfirm).run()
 if (lerna === false) {
   await $`git init`
   await $`yarn add -D ${defaultModules}`
+
+  // Add husky
+  await $`npx husky-init && yarn`
+  await $`rm .husky/pre-commit`  
+  fs.writeFileSync(pathTo('.husky/pre-commit'), defaultHuskyHook)
+  await $`chmod +x .husky/pre-commit`
 }
 
 copy.writeSync(`cd ${repo}`)

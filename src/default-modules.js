@@ -3,6 +3,7 @@ export const defaultModules = [
   'shx',
   'rollup',
   'ava',
+  'husky',
   'prettier',
   '@hbauer/prettier-config',
   'eslint',
