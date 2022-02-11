@@ -7,5 +7,6 @@ export const defaultModules = [
   'prettier',
   '@hbauer/prettier-config',
   'eslint',
+  'eslint-plugin-import',
   '@hbauer/eslint-config',
 ]
