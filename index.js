@@ -52,7 +52,7 @@ await $`git init`
 
 // Write default files
 const pwd = await getPwd()
-const pathTo = to => path.join(pwd, respositoryName, to)
+const pathTo = to => path.join(pwd, to)
 
 fs.writeFileSync(pathTo('package.json'), JSON.stringify(packageJson, null, 2))
 fs.writeFileSync(pathTo('.gitignore'), defaultGitignore)

@@ -22,6 +22,14 @@
   resolved "https://registry.yarnpkg.com/@hbauer/eslint-config/-/eslint-config-1.2.1.tgz#f2e1455c975639f7e7c565e2e41665a1f538dc7e"
   integrity sha512-1fbvWEU4eH5mWBkABdoXlaTjTjEOJwDT70L+LYM2pU1/0+l6RJcgbU6lAab/5rpX19Z36lXsnsNf9+MZU3chcQ==
 
+"@hbauer/init-project@^0.7.8":
+  version "0.7.8"
+  resolved "https://registry.yarnpkg.com/@hbauer/init-project/-/init-project-0.7.8.tgz#6d214e827fcd5a911bbf007a6d8d253922d67463"
+  integrity sha512-C/KuCmLZ/UMxysDHgLc+rurJqOtueTl+qiYukGDTGmiiKCpRPvPw1O0/m89CyaBNPcQJcBt14YA3VTEjxpobuw==
+  dependencies:
+    enquirer "^2.3.6"
+    zx "^4.3.0"
+
 "@hbauer/prettier-config@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@hbauer/prettier-config/-/prettier-config-1.1.0.tgz#c9a2aff583e4d88a89ecf8587361e82f8c1e268d"
