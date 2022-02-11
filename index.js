@@ -16,12 +16,11 @@ import { getPwd } from '@hbauer/init-project/src/utils/get-pwd.js'
 
 const { Snippet } = Enquirer
 
+// Prompt
 const { values: fields } = await new Snippet(packageJsonSnippet).run()
-
 const parts = fields.name.split('/')
 const repo = parts.length === 2 ? parts[1] : parts[0]
 
-// Parse answers
 const packageJson = buildPackageJson({ ...fields, repo })
 
 // Create new project directory
