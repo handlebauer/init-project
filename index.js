@@ -59,9 +59,9 @@ fs.writeFileSync(pathTo('src/test.js'), defaultTest)
 const lerna = await new Confirm(lernaConfirm).run()
 
 if (lerna === false) {
-  $`yarn add -D ${defaultModules}`
+  await $`yarn add -D ${defaultModules}`
 }
 
 copy.writeSync(`cd ${repo}`)
 
-$`code .`
+await $`code .`
