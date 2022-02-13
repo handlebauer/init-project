@@ -4,6 +4,11 @@
   "description": "Ease into it",
   "type": "module",
   "bin": "./index.js",
+  "files": [
+    "src",
+    "template/*",
+    "index.js"
+  ],
   "repository": "https://github.com/handlebauer/init-project.git",
   "author": "Donald Geddes",
   "license": "MIT",
