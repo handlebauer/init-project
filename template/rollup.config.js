@@ -1,7 +1,8 @@
-export const defaultRollupConfig = `import pkg from './package.json'
+import pkg from './package.json'
 
 const input = './src/index.js'
 
+// eslint-disable-next-line import/no-default-export
 export default {
   input,
   output: [
@@ -9,4 +10,3 @@ export default {
     { file: pkg.module, format: 'esm' },
   ],
 }
-`

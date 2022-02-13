@@ -1,4 +1,4 @@
-export const defaultDevDependencies = [
+export const devDependencies = [
   'typescript',
   'shx',
   'rollup',

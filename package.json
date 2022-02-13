@@ -9,7 +9,8 @@
   "license": "MIT",
   "prettier": "@hbauer/prettier-config",
   "eslintConfig": {
-    "extends": "@hbauer/eslint-config"
+    "extends": "@hbauer/eslint-config",
+    "ignorePatterns": "template"
   },
   "devDependencies": {
     "@hbauer/eslint-config": "^1.2.1",

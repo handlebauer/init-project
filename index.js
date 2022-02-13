@@ -1,71 +1,67 @@
 #!/usr/bin/env zx
 
 import { $, fs, path, cd } from 'zx'
-
-$.verbose = false
-
+import { createRequire } from 'module'
 import Enquirer from 'enquirer'
 import copy from 'clipboardy'
 
-import '@hbauer/init-project/src/process-error.js'
+// Show zx output?
+$.verbose = true
 
-import { defaultDevDependencies } from '@hbauer/init-project/src/default-dev-dependencies.js'
-import { defaultGitignore } from '@hbauer/init-project/src/default-gitignore.js'
-import { defaultRollupConfig } from '@hbauer/init-project/src/default-rollup-config.js'
-import { defaultJsConfig } from '@hbauer/init-project/src/default-js-config.js'
-import { defaultTest } from '@hbauer/init-project/src/default-test.js'
-import { defaultHuskyHook } from '@hbauer/init-project/src/default-husky-hook.js'
+process.once('uncaughtException', () => {
+  console.log(`
+      Aborting..
+  `)
+})
 
-import { packageJsonSnippet } from '@hbauer/init-project/src/package-json-snippet.js'
-import { lernaConfirm } from '@hbauer/init-project/src/lerna-confirm.js'
-
-import { buildPackageJson } from '@hbauer/init-project/src/build-package-json.js'
-import { getPwd } from '@hbauer/init-project/src/utils/get-pwd.js'
+import {
+  lernaConfirm,
+  packageJsonSnippet,
+  buildPackageJson,
+  devDependencies,
+  getPwd,
+} from '@hbauer/init-project/src/index.js'
 
 const { Snippet, Confirm } = Enquirer
 
-// Prompt
-
+// package.json
 const { values: fields } = await new Snippet(packageJsonSnippet).run()
 const parts = fields.name.split('/')
 const repo = parts.length === 2 ? parts[1] : parts[0]
-
 const packageJson = buildPackageJson({ ...fields, repo })
 
 // Create new project directory
 await $`mkdir ${repo}`
 await cd(repo)
 
-// Create empty index.js
-await $`mkdir src`
-await $`touch src/index.js`
+// Copy over template
+const packageRoot = createRequire(import.meta.url)
+  .resolve('@hbauer/init-project')
+  .split('/')
+  .slice(0, -1)
+  .join('/')
+await $`cp -r ${packageRoot}/template/. .`
 
-// Write default files
+// Write package.json files
 const pwd = await getPwd()
 const pathTo = to => path.join(pwd, to)
-
 fs.writeFileSync(pathTo('package.json'), JSON.stringify(packageJson, null, 2))
-fs.writeFileSync(pathTo('.gitignore'), defaultGitignore)
-fs.writeFileSync(pathTo('rollup.config.js'), defaultRollupConfig)
-fs.writeFileSync(
-  pathTo('jsconfig.json'),
-  JSON.stringify(defaultJsConfig, null, 2)
-)
-fs.writeFileSync(pathTo('src/test.js'), defaultTest)
 
 // Monorepo?
 const lerna = await new Confirm(lernaConfirm).run()
 
 if (lerna === false) {
-  // If not, some additional stuff
   await $`git init`
-  await $`yarn add -D ${defaultDevDependencies}`
+  await $`yarn add -D ${devDependencies}`
 
-  // Add husky
-  await $`npx husky-init && yarn`
-  await $`rm .husky/pre-commit`
-  fs.writeFileSync(pathTo('.husky/pre-commit'), defaultHuskyHook)
+  // First commit
+  await $`git add . && git commit -m "Init"`
+
+  // Set up husky
+  await $`npx husky install`
+  await $`npm set-script prepare "husky install"`
   await $`chmod +x .husky/pre-commit`
+  await $`git add . && git commit -m "Configure husky"`
 }
 
 copy.writeSync(`cd ${repo}`)
