@@ -11,6 +11,7 @@ import {
   packageJsonSnippet,
   lernaToggle,
   devDependencies,
+  preCommitHook,
   getPwd,
 } from '@hbauer/init-project/src/index.js'
 
@@ -76,6 +77,8 @@ if (lerna === false) {
   await $`git add . && git commit -m "Init"`
 
   // Set up husky
+  await $`mkdir .husky`
+  fs.writeFileSync(pathTo('.husky/pre-commit'), preCommitHook)
   await $`npx husky install`
   await $`npm set-script prepare "husky install"`
   await $`chmod +x .husky/pre-commit`
