@@ -5,6 +5,15 @@ import { createRequire } from 'module'
 import Enquirer from 'enquirer'
 import copy from 'clipboardy'
 
+import {
+  buildPackageJson,
+  buildGitignore,
+  packageJsonSnippet,
+  lernaConfirm,
+  devDependencies,
+  getPwd,
+} from '@hbauer/init-project/src/index.js'
+
 // Show zx output?
 $.verbose = true
 
@@ -14,42 +23,39 @@ process.once('uncaughtException', () => {
   `)
 })
 
-import {
-  lernaConfirm,
-  packageJsonSnippet,
-  buildPackageJson,
-  devDependencies,
-  getPwd,
-} from '@hbauer/init-project/src/index.js'
-
 const { Snippet, Confirm } = Enquirer
 
-// package.json
-const { values: fields } = await new Snippet(packageJsonSnippet).run()
+// Monorepo?
+const lerna = await new Confirm(lernaConfirm).run()
+// package.json?
+const { values: fields } = await new Snippet(packageJsonSnippet(lerna)).run()
+
+// Build package.json
 const parts = fields.name.split('/')
 const repo = parts.length === 2 ? parts[1] : parts[0]
 const packageJson = buildPackageJson({ ...fields, repo })
+if (lerna) delete packageJson.repository
+
+// Build .gitignore
+const gitignore = buildGitignore(lerna)
 
 // Create new project directory
 await $`mkdir ${repo}`
 await cd(repo)
 
-// Copy over template
+// Copy over static files
 const packageRoot = createRequire(import.meta.url)
   .resolve('@hbauer/init-project')
   .split('/')
   .slice(0, -1)
   .join('/')
-await $`cp -r ${packageRoot}/template/. .`
-await $`mv default.gitignore .gitignore`
+await $`cp -r ${packageRoot}/static/. .`
 
 // Write package.json files
 const pwd = await getPwd()
 const pathTo = to => path.join(pwd, to)
 fs.writeFileSync(pathTo('package.json'), JSON.stringify(packageJson, null, 2))
-
-// Monorepo?
-const lerna = await new Confirm(lernaConfirm).run()
+fs.writeFileSync(pathTo('.gitignore'), gitignore)
 
 if (lerna === false) {
   await $`git init`

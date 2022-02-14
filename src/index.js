@@ -1,4 +1,5 @@
 export { buildPackageJson } from './build-package-json.js'
+export { buildGitignore } from './build-gitignore.js'
 export { packageJsonSnippet } from './package-json-snippet.js'
 export { lernaConfirm } from './lerna-confirm.js'
 export { devDependencies } from './dev-dependencies.js'

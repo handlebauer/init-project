@@ -1,4 +1,4 @@
-export const packageJsonSnippet = {
+export const packageJsonSnippet = lerna => ({
   name: 'package',
   message: 'package.json',
   required: true,
@@ -8,7 +8,15 @@ export const packageJsonSnippet = {
       message: 'Package Name',
     },
   ],
-  template: `
+  template: lerna
+    ? `
+  {
+    "name": "{{name}}",
+    "version": "0.0.0",
+    "type": "module",
+  }
+`
+    : `
   {
     "name": "{{name}}",
     "version": "0.0.0",
@@ -17,4 +25,4 @@ export const packageJsonSnippet = {
     "repository": "https://github.com/{{user:"handlebauer"}}/{{repo:name}}.git",
   }
 `,
-}
+})
