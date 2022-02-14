@@ -52,8 +52,8 @@ if (lerna) delete packageJson.repository
 const gitignore = buildGitignore(lerna)
 
 // Create new project directory
-await $`mkdir ${dirname}`
-await cd(dirname)
+await $`mkdir ${lerna ? dirname : repo}`
+await cd(lerna ? dirname : repo)
 
 // Copy over static files
 const packageRoot = createRequire(import.meta.url)
@@ -85,6 +85,6 @@ if (lerna === false) {
   await $`git add . && git commit -m "Configure husky"`
 }
 
-copy.writeSync(`cd ${dirname}`)
+copy.writeSync(`cd ${lerna ? dirname : repo}`)
 
 await $`code .`
