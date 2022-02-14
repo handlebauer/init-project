@@ -6,7 +6,7 @@
   "bin": "./index.js",
   "files": [
     "src",
-    "template/*",
+    "static/*",
     "index.js"
   ],
   "repository": "https://github.com/handlebauer/init-project.git",
@@ -15,7 +15,7 @@
   "prettier": "@hbauer/prettier-config",
   "eslintConfig": {
     "extends": "@hbauer/eslint-config",
-    "ignorePatterns": "template"
+    "ignorePatterns": "static"
   },
   "devDependencies": {
     "@hbauer/eslint-config": "^1.2.1",
