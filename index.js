@@ -9,7 +9,7 @@ import {
   buildPackageJson,
   buildGitignore,
   packageJsonSnippet,
-  lernaConfirm,
+  lernaToggle,
   devDependencies,
   getPwd,
 } from '@hbauer/init-project/src/index.js'
@@ -17,18 +17,29 @@ import {
 // Show zx output?
 $.verbose = true
 
-process.once('uncaughtException', () => {
+process.once('uncaughtException', err => {
+  console.log(err)
   console.log(`
       Aborting..
   `)
 })
 
-const { Snippet, Confirm } = Enquirer
+const { Toggle, Input, Snippet } = Enquirer
 
 // Monorepo?
-const lerna = await new Confirm(lernaConfirm).run()
+const lerna = await new Toggle(lernaToggle).run()
+
 // package.json?
 const { values: fields } = await new Snippet(packageJsonSnippet(lerna)).run()
+
+// Directory name?
+const dirname =
+  lerna === false
+    ? fields.name
+    : await new Input({
+        message: 'What is the directory name?',
+        initial: fields.name,
+      }).run()
 
 // Build package.json
 const parts = fields.name.split('/')
@@ -40,8 +51,8 @@ if (lerna) delete packageJson.repository
 const gitignore = buildGitignore(lerna)
 
 // Create new project directory
-await $`mkdir ${repo}`
-await cd(repo)
+await $`mkdir ${dirname}`
+await cd(dirname)
 
 // Copy over static files
 const packageRoot = createRequire(import.meta.url)
@@ -71,6 +82,6 @@ if (lerna === false) {
   await $`git add . && git commit -m "Configure husky"`
 }
 
-copy.writeSync(`cd ${repo}`)
+copy.writeSync(`cd ${dirname}`)
 
 await $`code .`
