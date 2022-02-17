@@ -13,10 +13,11 @@ import {
   devDependencies,
   preCommitHook,
   getPwd,
+  getParentPackageJson,
 } from '@hbauer/init-project/src/index.js'
 
 // Show zx output?
-$.verbose = true
+$.verbose = false
 
 process.once('uncaughtException', err => {
   console.log(err)
@@ -27,11 +28,19 @@ process.once('uncaughtException', err => {
 
 const { Toggle, Input, Snippet } = Enquirer
 
+let pwd = await getPwd()
+
 // Monorepo?
 const lerna = await new Toggle(lernaToggle).run()
 
+const { version } = lerna
+  ? await getParentPackageJson(pwd)
+  : { version: '0.0.0' }
+
 // package.json?
-const { values: fields } = await new Snippet(packageJsonSnippet(lerna)).run()
+const { values: fields } = await new Snippet(
+  packageJsonSnippet(lerna, version)
+).run()
 
 // Directory name?
 const dirname =
@@ -42,14 +51,25 @@ const dirname =
         initial: fields.name,
       }).run()
 
-// Build package.json
+// Parse repo
 const parts = fields.name.split('/')
 const repo = parts.length === 2 ? parts[1] : parts[0]
-const packageJson = buildPackageJson({ ...fields, repo })
+
+// Add properties before building
+fields.repo = repo
+fields.version = version
+
+// Build package.json
+const packageJson = buildPackageJson(fields)
+
+// Lerna doesn't need the repository field
 if (lerna) delete packageJson.repository
 
 // Build .gitignore
 const gitignore = buildGitignore(lerna)
+
+// Turn this back on to indicate progress
+$.verbose = true
 
 // Create new project directory
 await $`mkdir ${lerna ? dirname : repo}`
@@ -64,7 +84,7 @@ const packageRoot = createRequire(import.meta.url)
 await $`cp -r ${packageRoot}/static/. .`
 
 // Write package.json files
-const pwd = await getPwd()
+pwd = await getPwd()
 const pathTo = to => path.join(pwd, to)
 fs.writeFileSync(pathTo('package.json'), JSON.stringify(packageJson, null, 2))
 fs.writeFileSync(pathTo('.gitignore'), gitignore)

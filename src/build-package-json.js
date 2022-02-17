@@ -1,6 +1,6 @@
-export const buildPackageJson = ({ name, user, repo }) => ({
+export const buildPackageJson = ({ name, version, user, repo }) => ({
   name,
-  version: '0.0.0',
+  version,
   type: 'module',
   exports: {
     import: './lib/index.mjs',
