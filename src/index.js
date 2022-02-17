@@ -6,4 +6,4 @@ export { devDependencies } from './dev-dependencies.js'
 export { preCommitHook } from './pre-commit-hook.js'
 
 export { getPwd } from './utils/get-pwd.js'
-export { getParentPackageJson } from './utils/get-parent-package.json.js'
+export { getLernaJson } from './utils/get-lerna-json.js'

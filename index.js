@@ -13,7 +13,7 @@ import {
   devDependencies,
   preCommitHook,
   getPwd,
-  getParentPackageJson,
+  getLernaJson,
 } from '@hbauer/init-project/src/index.js'
 
 // Show zx output?
@@ -33,9 +33,7 @@ let pwd = await getPwd()
 // Monorepo?
 const lerna = await new Toggle(lernaToggle).run()
 
-const { version } = lerna
-  ? await getParentPackageJson(pwd)
-  : { version: '0.0.0' }
+const { version } = lerna ? await getLernaJson(pwd) : { version: '0.0.0' }
 
 // package.json?
 const { values: fields } = await new Snippet(
