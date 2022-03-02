@@ -21,7 +21,7 @@ export const buildPackageJson = ({ name, version, user, repo }) => ({
     extends: '@hbauer/eslint-config',
   },
   scripts: {
-    build: 'shx rm -rf ./lib && rollup -c && tsc -p jsconfig.json',
+    build: 'shx rm -rf ./types ./lib && rollup -c && tsc -p jsconfig.json',
     test: 'ava',
     prepublishOnly: 'npm run build',
   },
