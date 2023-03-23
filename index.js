@@ -98,7 +98,7 @@ if (lerna === false) {
   await $`mkdir .husky`
   fs.writeFileSync(pathTo('.husky/pre-commit'), preCommitHook)
   await $`npx husky install`
-  await $`npm set-script prepare "husky install"`
+  await $`npm pkg set scripts.prepare="husky install"`
   await $`chmod +x .husky/pre-commit`
   await $`git add . && git commit -m "Configure husky"`
 }
