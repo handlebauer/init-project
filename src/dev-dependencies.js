@@ -7,6 +7,5 @@ export const devDependencies = [
   'prettier',
   '@hbauer/prettier-config',
   'eslint',
-  'eslint-plugin-import',
   '@hbauer/eslint-config',
 ]
