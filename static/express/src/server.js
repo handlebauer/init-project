@@ -1,5 +1,5 @@
 import express from 'express'
-import { logIncomingRequest } from './middelware/log-incoming-request.js'
+import { logIncomingRequest } from './middleware/log-incoming-request.js'
 
 const server = express()
 
