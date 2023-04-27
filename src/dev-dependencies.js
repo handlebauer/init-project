@@ -1,6 +1,7 @@
 export const devDependencies = express =>
   express
     ? [
+        'nodemon',
         'husky',
         'prettier',
         '@hbauer/prettier-config',
