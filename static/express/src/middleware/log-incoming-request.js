@@ -4,12 +4,13 @@ const { PORT } = process.env
 const getDate = () => {
   const date = new Date()
   return new Intl.DateTimeFormat('en-US', {
-    minute: '2-digit',
+    year: '2-digit',
+    month: '2-digit',
     day: '2-digit',
     hour: '2-digit',
-    month: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
     timeZoneName: 'short',
-    year: '2-digit',
     dayPeriod: 'short',
     hour12: false,
     timeZone: 'America/Vancouver',
