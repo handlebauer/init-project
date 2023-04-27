@@ -12,6 +12,7 @@ import {
   lernaToggle,
   expressToggle,
   devDependencies,
+  dependencies,
   preCommitHook,
   getPwd,
   getLernaJson,
@@ -95,7 +96,8 @@ fs.writeFileSync(pathTo('.gitignore'), gitignore)
 
 if (lerna === false) {
   await $`git init`
-  await $`yarn add -D ${devDependencies}`
+  await $`yarn add -D ${devDependencies(express)}`
+  await $`yarn add ${dependencies(express)}`
 
   // First commit
   await $`git add . && git commit -m "Init"`

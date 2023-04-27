@@ -4,6 +4,7 @@ export { packageJsonSnippet } from './package-json-snippet.js'
 export { lernaToggle } from './lerna-toggle.js'
 export { expressToggle } from './express-toggle.js'
 export { devDependencies } from './dev-dependencies.js'
+export { dependencies } from './dependencies.js'
 export { preCommitHook } from './pre-commit-hook.js'
 
 export { getPwd } from './utils/get-pwd.js'
