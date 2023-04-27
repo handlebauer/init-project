@@ -1,5 +1,9 @@
-import { server } from './server.js'
+import express from 'express'
 
-const { PORT } = process.env.port
+const server = express()
 
-server.listen(PORT, () => console.log(`Server listening on port ${PORT}`))
+server.use(express.json())
+
+server.get('/', (req, res) => res.json({ hello: 'world' }))
+
+export { server }
