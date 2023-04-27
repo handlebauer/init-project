@@ -8,4 +8,5 @@ export const devDependencies = [
   '@hbauer/prettier-config',
   'eslint',
   '@hbauer/eslint-config',
+  '@types/node',
 ]

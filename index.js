@@ -10,6 +10,7 @@ import {
   buildGitignore,
   packageJsonSnippet,
   lernaToggle,
+  expressToggle,
   devDependencies,
   preCommitHook,
   getPwd,
@@ -32,6 +33,7 @@ let pwd = await getPwd()
 
 // Monorepo?
 const lerna = await new Toggle(lernaToggle).run()
+const express = await new Toggle(expressToggle).run()
 
 const { version } = lerna ? await getLernaJson(pwd) : { version: '0.0.0' }
 
@@ -56,6 +58,7 @@ const repo = parts.length === 2 ? parts[1] : parts[0]
 // Add properties before building
 fields.repo = repo
 fields.version = version
+fields.express = express
 
 // Build package.json
 const packageJson = buildPackageJson(fields)
@@ -79,7 +82,10 @@ const packageRoot = createRequire(import.meta.url)
   .split('/')
   .slice(0, -1)
   .join('/')
-await $`cp -r ${packageRoot}/static/. .`
+
+express
+  ? await $`cp -r ${packageRoot}/static/express. .`
+  : await $`cp -r ${packageRoot}/static/package. .`
 
 // Write package.json files
 pwd = await getPwd()

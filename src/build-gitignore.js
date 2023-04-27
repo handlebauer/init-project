@@ -5,6 +5,10 @@ export const buildGitignore = lerna =>
 lib
 types
 
+.env
+
+npm-debug.log*
+npm-error.log*
 yarn-debug.log*
 yarn-error.log*
 

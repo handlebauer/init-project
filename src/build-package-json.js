@@ -1,4 +1,4 @@
-export const buildPackageJson = ({ name, version, user, repo }) => ({
+export const buildPackageJson = ({ name, version, user, repo, express }) => ({
   name,
   version,
   type: 'module',
@@ -20,10 +20,15 @@ export const buildPackageJson = ({ name, version, user, repo }) => ({
   eslintConfig: {
     extends: '@hbauer/eslint-config',
   },
-  scripts: {
-    build: 'shx rm -rf ./lib && rollup -c',
-    types: 'shx rm -rf ./types && tsc -p jsconfig.json',
-    prepare: 'npm run types && npm run build',
-    test: 'ava',
-  },
+  scripts: express
+    ? {
+        dev: 'nodemon src/index.js',
+        start: 'node src/index.js',
+      }
+    : {
+        build: 'shx rm -rf ./lib && rollup -c',
+        types: 'shx rm -rf ./types && tsc -p jsconfig.json',
+        prepare: 'npm run types && npm run build',
+        test: 'ava',
+      },
 })
