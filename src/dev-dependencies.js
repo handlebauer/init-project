@@ -9,6 +9,7 @@ export const devDependencies = express =>
         'eslint',
         '@hbauer/eslint-config',
         '@types/node',
+        '@types/express',
       ]
     : [
         'dotenv',
