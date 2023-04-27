@@ -84,8 +84,8 @@ const packageRoot = createRequire(import.meta.url)
   .join('/')
 
 express
-  ? await $`cp -r ${packageRoot}/static/express. .`
-  : await $`cp -r ${packageRoot}/static/package. .`
+  ? await $`cp -r ${packageRoot}/static/express/. .`
+  : await $`cp -r ${packageRoot}/static/package/. .`
 
 // Write package.json files
 pwd = await getPwd()
