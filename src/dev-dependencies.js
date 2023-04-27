@@ -1,6 +1,7 @@
 export const devDependencies = express =>
   express
     ? [
+        'dotenv',
         'nodemon',
         'husky',
         'prettier',
@@ -10,6 +11,7 @@ export const devDependencies = express =>
         '@types/node',
       ]
     : [
+        'dotenv',
         'typescript',
         'shx',
         'rollup',
