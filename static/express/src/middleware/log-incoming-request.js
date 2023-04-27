@@ -1,12 +1,36 @@
 import color from 'picocolors'
 const { PORT } = process.env
 
+const getDate = () => {
+  const date = new Date()
+  return new Intl.DateTimeFormat('en-US', {
+    minute: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    month: '2-digit',
+    timeZoneName: 'short',
+    year: '2-digit',
+    dayPeriod: 'short',
+    hour12: false,
+    timeZone: 'America/Vancouver',
+  })
+    .format(date)
+    .replace(/,/, '')
+}
+
 /** @type {() => (req: ExpressRequest, _: ExpressResponse, done: ExpressNextFunction) => void} */
 export const logIncomingRequest = () => (req, _, done) => {
   const method = color.bold(req.method)
-  const url = `${req.protocol}://${req.hostname}:${PORT}${req.url}`
-  console.log(`${method} ${url}`)
-  if (Object.keys(req.body).length)
-    console.log(color.dim(JSON.stringify(req.body, null, 3)))
+  const url = color.underline(
+    `${req.protocol}://${req.hostname}:${PORT}${req.url}`
+  )
+  const dateTime = color.green(`[${getDate()}]`)
+  const ip = color.dim(`(${req.ip})`)
+
+  console.log(`${dateTime} ${method} ${url} ${ip}`)
+
+  if (req.body && Object.keys(req.body).length)
+    console.log(color.bold(JSON.stringify(req.body, null, 3)))
+
   done()
 }

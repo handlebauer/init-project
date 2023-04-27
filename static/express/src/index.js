@@ -1,4 +1,5 @@
 import { server } from './server.js'
+import { logIncomingRequest } from './middleware/log-incoming-request.js'
 
 const { PORT } = process.env
 
