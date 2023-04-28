@@ -27,7 +27,7 @@ export const buildGitignore = lerna => {
   if (lerna) {
     return ''
   }
-  if express {
+  if (express) {
     return expressIgnore
   }
   return defaultIgnore
