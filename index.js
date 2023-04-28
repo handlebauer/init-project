@@ -97,7 +97,7 @@ fs.writeFileSync(pathTo('.gitignore'), gitignore)
 if (lerna === false) {
   await $`git init`
   await $`yarn add -D ${devDependencies(express)}`
-  await $`yarn add ${dependencies(express)}`
+  if (express) await $`yarn add ${dependencies}`
 
   // First commit
   await $`git add . && git commit -m "Init"`

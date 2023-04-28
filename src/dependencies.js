@@ -1,2 +1,1 @@
-export const dependencies = express =>
-  express ? ['express', 'picocolors'] : []
+export const dependencies = ['express', 'picocolors']
