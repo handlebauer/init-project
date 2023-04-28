@@ -42,7 +42,7 @@ export const buildPackageJson = ({ name, version, user, repo, express }) =>
         scripts: {
           build: 'shx rm -rf ./lib && rollup -c',
           types: 'shx rm -rf ./types && tsc -p jsconfig.json',
-          prepare: 'npm run types && npm run build',
+          prepublishOnly: 'npm run types && npm run build',
           test: 'ava',
         },
       }
