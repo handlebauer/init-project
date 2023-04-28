@@ -68,7 +68,7 @@ const packageJson = buildPackageJson(fields)
 if (lerna) delete packageJson.repository
 
 // Build .gitignore
-const gitignore = buildGitignore(lerna)
+const gitignore = buildGitignore(lerna, express)
 
 // Turn this back on to indicate progress
 $.verbose = true

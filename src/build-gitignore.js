@@ -23,7 +23,7 @@ yarn-error.log*
 
 .DS_STORE`
 
-export const buildGitignore = lerna => {
+export const buildGitignore = (lerna, lerna) => {
   if (lerna) {
     return ''
   }
