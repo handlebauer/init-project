@@ -8,6 +8,11 @@ export const buildPackageJson = ({ name, version, user, repo, express }) =>
         author: 'Donald Geddes',
         licence: 'MIT',
         repository: `https://github.com/${user}/${repo}.git`,
+        ava: {
+          eslintConfig: {
+            extends: '@hbauer/eslint-config',
+          },
+        },
         prettier: '@hbauer/prettier-config',
         eslintConfig: {
           extends: '@hbauer/eslint-config',
@@ -34,6 +39,9 @@ export const buildPackageJson = ({ name, version, user, repo, express }) =>
         repository: `https://github.com/${user}/${repo}.git`,
         publishConfig: {
           access: 'public',
+        },
+        ava: {
+          require: ['dotenv/config'],
         },
         prettier: '@hbauer/prettier-config',
         eslintConfig: {
