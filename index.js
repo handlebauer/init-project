@@ -1,7 +1,8 @@
 #!/usr/bin/env zx
+/* eslint-disable import/no-unresolved */
 
-import { $, fs, path, cd } from 'zx'
 import { createRequire } from 'module'
+import { $, fs, path, cd } from 'zx'
 import Enquirer from 'enquirer'
 import copy from 'clipboardy'
 
@@ -84,9 +85,11 @@ const packageRoot = createRequire(import.meta.url)
   .slice(0, -1)
   .join('/')
 
-express
-  ? await $`cp -r ${packageRoot}/static/express/. .`
-  : await $`cp -r ${packageRoot}/static/package/. .`
+if (express) {
+  await $`cp -r ${packageRoot}/static/express/. .`
+} else {
+  await $`cp -r ${packageRoot}/static/package/. .`
+}
 
 // Write package.json files
 pwd = await getPwd()
@@ -97,7 +100,7 @@ fs.writeFileSync(pathTo('.gitignore'), gitignore)
 if (lerna === false) {
   await $`git init`
   await $`yarn add -D ${devDependencies(express)}`
-  if (express) await $`yarn add ${dependencies}`
+  await $`yarn add ${dependencies(express)}`
 
   // First commit
   await $`git add . && git commit -m "Init"`

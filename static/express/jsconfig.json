@@ -3,13 +3,13 @@
     "checkJs": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "target": "esnext",
+    "target": "ESNext",
+    "noEmit": false,
     "declaration": true,
     "emitDeclarationOnly": true,
-    "outDir": "types",
-    "noEmit": false,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "outDir": "lib",
+    "module": "ESNext",
+    "moduleResolution": "nodenext"
   },
   "include": [
     "src/**/*"

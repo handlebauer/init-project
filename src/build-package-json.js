@@ -27,8 +27,26 @@ export const buildPackageJson = ({ name, version, user, repo, express }) =>
         version,
         type: 'module',
         exports: {
-          import: './lib/index.mjs',
-          require: './lib/index.cjs',
+          '.': {
+            types: './lib/index.d.ts',
+            import: './lib/index.mjs',
+            require: './lib/index.cjs',
+          },
+          './utils.js': {
+            types: './lib/utils/index.d.ts',
+            import: './lib/utils/index.mjs',
+            require: './lib/utils/index.cjs',
+          },
+          './schemas.js': {
+            types: './lib/schemas/index.d.ts',
+            import: './lib/schemas/index.mjs',
+            require: './lib/schemas/index.cjs',
+          },
+          './errors.js': {
+            types: './lib/errors/index.d.ts',
+            import: './lib/errors/index.mjs',
+            require: './lib/errors/index.cjs',
+          },
         },
         module: './lib/index.mjs',
         main: './lib/index.cjs',
