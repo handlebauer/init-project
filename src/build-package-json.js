@@ -66,9 +66,10 @@ export const buildPackageJson = ({ name, version, user, repo, express }) =>
           extends: '@hbauer/eslint-config',
         },
         scripts: {
-          build: 'shx rm -rf ./lib && rollup -c',
-          types: 'shx rm -rf ./types && tsc -p jsconfig.json',
-          prepublishOnly: 'npm run types && npm run build',
+          build: 'rollup -c',
+          types: 'tsc -p jsconfig.json',
+          clean: 'shx rm -rf ./lib',
+          prepublishOnly: 'npm run clean && npm run types && npm run build',
           test: 'ava',
         },
       }
